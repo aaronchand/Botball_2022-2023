@@ -1,0 +1,230 @@
+#include <kipr/wombat.h>
+void arm_claw(int speed);
+void reset_claw(int speed);
+void create_spin_CW(int speed);
+void create_spin_CCW(int speed);
+void black_line_stop (int speed);
+void create_drive_straight(int speed);	
+void servo(int port, int position, int speed);
+void power_stop();
+int main()
+{
+    //1:50
+    
+    create_connect();
+    wait_for_light(5);
+    shut_down_in(118);
+    
+    //knock over rings
+    enable_servo(2);
+    set_servo_position(2,2040);
+    msleep(1000);
+    ao();
+
+    //drive to middle
+    while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(200);
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    create_spin_CW(100);
+    msleep(1600);
+    
+    //cube 1
+    set_create_distance(0);
+    while(get_create_distance() < 300) create_drive_straight(100);
+    create_stop();
+    servo(0,700,1);
+    while (gmpc(3) > -300) motor(3,-100);
+        power_stop();
+   		cmpc(3);
+        while (gmpc(3) < 300) motor(3,100);
+        power_stop();
+    	servo(0,2040,1);
+    
+    //cube 2
+    set_create_distance(0);
+    while(get_create_distance() < 150) create_drive_straight(100);
+    create_stop();
+    servo(0,1250,1);
+    cmpc(3);
+        while (gmpc(3) < 300) motor(3,100);
+        power_stop();
+    while (gmpc(3) > -300) motor(3,-100);
+        power_stop();
+    	servo(0,2040,1);
+
+    //cube 3
+    set_create_distance(0);
+    while(get_create_distance() < 600) create_drive_straight(100);
+    create_stop();
+    servo(0,1250,1);
+    cmpc(3);
+        while (gmpc(3) < 300) motor(3,100);
+        power_stop();
+    while (gmpc(3) > -300) motor(3,-100);
+        power_stop();
+    	servo(0,2040,1);
+    
+    //cube 4
+    set_create_distance(0);
+    while(get_create_distance() < 300) create_drive_straight(100);
+    create_stop();
+    servo(0,700,1);
+    cmpc(3);
+        while (gmpc(3) < 300) motor(3,100);
+        power_stop();
+    while (gmpc(3) > -300) motor(3,-100);
+        power_stop();
+    	servo(0,2040,1);
+    
+    //bump east wall
+    while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(200);
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+
+    //line up with couplers
+    create_spin_CCW(100);
+    msleep(1600);
+    while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(100);
+    //set_create_distance(0);
+    //while(get_create_distance() > -10) create_drive_straight(-100);
+    create_spin_CCW(100);
+    msleep(1600);
+    set_create_distance(0);
+    while(get_create_distance() > -100) create_drive_straight(-100);
+
+    //#1
+    set_create_distance(0);
+    while(get_create_distance() < 100) create_drive_straight(100);
+    create_stop();
+    servo(2,550,1); //600
+    cmpc(0);
+    while (gmpc(0) < 2000) motor(0,100);
+    power_stop();
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    servo(2,2040,1);
+
+    //#2
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100);
+    create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100);
+    create_stop();
+    servo(2,850,1); //900
+    cmpc(0);
+    while (gmpc(0) < 2000) motor(0,100);
+    power_stop();
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    servo(2,2040,1);
+
+    //#3
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100);
+    create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100);
+    create_stop();
+    servo(2,1200,1); //1250
+    cmpc(0);
+    while (gmpc(0) < 2000) motor(0,100);
+    power_stop();
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    servo(2,2040,1);
+
+    //#4
+    create_spin_CW(25);
+    msleep(250);
+    create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 225) create_drive_straight(100);
+    create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 225) create_drive_straight(100);
+    create_stop();
+    servo(2,1200,1);
+    cmpc(0);
+    while (gmpc(0) < 2000) motor(0,100);
+    power_stop();
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    servo(2,2040,1);
+
+    //#5
+    //create_spin_CW(25);
+    //msleep(250);
+    //create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100); //475
+    create_stop();
+    set_create_distance(0);
+    while(get_create_distance() < 240) create_drive_straight(100); //475
+    create_stop();
+    servo(2,850,1);
+    cmpc(0);
+    while (gmpc(0) < 2000) motor(0,100);
+    power_stop();
+    set_create_distance(0);
+    while(get_create_distance() > -25) create_drive_straight(-100);
+    create_stop();
+    servo(2,2040,1);
+    
+    //#6
+    while(get_create_lbump() == 0 || get_create_rbump() == 0) create_drive_straight(100);
+    create_stop();
+    //set_create_distance(0);
+    //while(get_create_distance() > -10) create_drive_straight(-100); //
+    create_spin_CCW(50);
+    msleep(350);
+    create_stop();
+    servo(2,550,1);
+    cmpc(0);
+    while (gmpc(0) < 3000) motor(0,100);
+    power_stop();
+
+    create_disconnect();
+    return 0;
+}
+void black_line_stop (int speed){
+    while(get_create_lcliff_amt() > 1750 && get_create_rcliff_amt() > 1750)
+    {
+        create_drive_straight(speed);
+    }
+    create_stop();
+}
+void reset_claw(int speed){
+    while (analog(0) > 500){
+        motor(3,speed);
+    }
+}
+void arm_claw(int speed){
+    cmpc(3);
+    while (gmpc(3) < 1000) motor(3,speed);
+}
+void servo(int port, int position, int speed){
+    int servo_position = get_servo_position(port);
+    while(servo_position != position){
+        if(servo_position > position){
+            servo_position -= 1;
+        }
+        if(servo_position < position){
+            servo_position += 1;
+        }
+        set_servo_position(port, servo_position);
+        msleep(speed);
+    }
+    set_servo_position(port, servo_position);
+    msleep(50);
+}
+void power_stop(){
+    motor(0,0);
+    motor(3,0);
+    msleep(50);
+}
