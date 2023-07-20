@@ -35,11 +35,11 @@ int main()
     create_stop();
     servo(0,700,1);
     while (gmpc(3) > -300) motor(3,-100);
-        power_stop();
-   		cmpc(3);
-        while (gmpc(3) < 300) motor(3,100);
-        power_stop();
-    	servo(0,2040,1);
+    power_stop();
+   	cmpc(3);
+    while (gmpc(3) < 300) motor(3,100);
+    power_stop();
+    servo(0,2040,1);
     
     //cube 2
     set_create_distance(0);
@@ -47,11 +47,11 @@ int main()
     create_stop();
     servo(0,1250,1);
     cmpc(3);
-        while (gmpc(3) < 300) motor(3,100);
-        power_stop();
+    while (gmpc(3) < 300) motor(3,100);
+    power_stop();
     while (gmpc(3) > -300) motor(3,-100);
-        power_stop();
-    	servo(0,2040,1);
+    power_stop();
+    servo(0,2040,1);
 
     //cube 3
     set_create_distance(0);
@@ -59,11 +59,11 @@ int main()
     create_stop();
     servo(0,1250,1);
     cmpc(3);
-        while (gmpc(3) < 300) motor(3,100);
-        power_stop();
+    while (gmpc(3) < 300) motor(3,100);
+    power_stop();
     while (gmpc(3) > -300) motor(3,-100);
-        power_stop();
-    	servo(0,2040,1);
+    power_stop();
+    servo(0,2040,1);
     
     //cube 4
     set_create_distance(0);
@@ -71,11 +71,11 @@ int main()
     create_stop();
     servo(0,700,1);
     cmpc(3);
-        while (gmpc(3) < 300) motor(3,100);
-        power_stop();
+    while (gmpc(3) < 300) motor(3,100);
+    power_stop();
     while (gmpc(3) > -300) motor(3,-100);
-        power_stop();
-    	servo(0,2040,1);
+    power_stop();
+    servo(0,2040,1);
     
     //bump east wall
     while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(200);
