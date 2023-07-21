@@ -12,7 +12,7 @@ int main()
     //1:50
     
     create_connect();
-    wait_for_light(5);
+    //wait_for_light(5);
     shut_down_in(118);
     
     //knock over rings
@@ -24,7 +24,7 @@ int main()
     //drive to middle
     while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(200);
     set_create_distance(0);
-    while(get_create_distance() > -25) create_drive_straight(-100);
+    while(get_create_distance() > -10) create_drive_straight(-100);
     create_stop();
     create_spin_CW(100);
     msleep(1600);
@@ -33,47 +33,72 @@ int main()
     set_create_distance(0);
     while(get_create_distance() < 300) create_drive_straight(100);
     create_stop();
-    servo(0,700,1);
-    while (gmpc(3) > -300) motor(3,-100);
+    enable_servo(0);
+    cmpc(3);
+    servo(0,850,1);
+    msleep(500);
+    while (gmpc(3) < 400) motor(3,25);
     power_stop();
-   	cmpc(3);
+    msleep(500);
+    servo(0,850,1);
+    msleep(500);
+    cmpc(3);
     while (gmpc(3) < 300) motor(3,100);
+    power_stop();
+    cmpc(3);
+    while (gmpc(3) > -300) motor(3,-100);
     power_stop();
     servo(0,2040,1);
     
     //cube 2
     set_create_distance(0);
-    while(get_create_distance() < 150) create_drive_straight(100);
+    while(get_create_distance() < 400) create_drive_straight(100);
     create_stop();
     servo(0,1250,1);
     cmpc(3);
+    msleep(500);
     while (gmpc(3) < 300) motor(3,100);
     power_stop();
+    cmpc(3);
     while (gmpc(3) > -300) motor(3,-100);
     power_stop();
     servo(0,2040,1);
+    
+    //bump botgal
+    black_line_stop(200);
+    create_spin_CCW(100);
+    msleep(1600);
+    while(get_create_lbump() == 0 && get_create_rbump() == 0) create_drive_straight(200);
+    set_create_distance(0);
+    while(get_create_distance() > -10) create_drive_straight(-100);
+    create_spin_CW(100);
+    msleep(1600);
 
     //cube 3
     set_create_distance(0);
-    while(get_create_distance() < 600) create_drive_straight(100);
+    while(get_create_distance() < 400) create_drive_straight(100);
     create_stop();
     servo(0,1250,1);
+    msleep(500);
     cmpc(3);
     while (gmpc(3) < 300) motor(3,100);
     power_stop();
+    cmpc(3);
     while (gmpc(3) > -300) motor(3,-100);
     power_stop();
     servo(0,2040,1);
     
     //cube 4
     set_create_distance(0);
-    while(get_create_distance() < 300) create_drive_straight(100);
+    while(get_create_distance() < 500) create_drive_straight(100);
     create_stop();
-    servo(0,700,1);
+    servo(0,850,1);
+    msleep(500);
+    cmpc(3);
+    while (gmpc(3) > -300) motor(3,-100);
+    power_stop();
     cmpc(3);
     while (gmpc(3) < 300) motor(3,100);
-    power_stop();
-    while (gmpc(3) > -300) motor(3,-100);
     power_stop();
     servo(0,2040,1);
     
@@ -92,6 +117,8 @@ int main()
     msleep(1600);
     set_create_distance(0);
     while(get_create_distance() > -100) create_drive_straight(-100);
+    create_stop();
+    servo(0,1200,1);
 
     //#1
     set_create_distance(0);
@@ -182,7 +209,7 @@ int main()
     //set_create_distance(0);
     //while(get_create_distance() > -10) create_drive_straight(-100); //
     create_spin_CCW(50);
-    msleep(350);
+    msleep(400);
     create_stop();
     servo(2,550,1);
     cmpc(0);
